@@ -1,0 +1,123 @@
+
+
+0、node安装：brew install node
+1、创建一个package.json文件：npm init
+2、全局安装webpack：sudo npm install webpack -g
+如果比较慢，可以修改npm源：npm config set registry https://registry.npm.taobao.org
+3、本地安装webpack
+npm install webpack@3.10.0 --save-dev
+npm install webpack-cli --save-dev
+4、使用webpack
+创建src/page/index/index.js
+cats = require('./cats.js');
+console.log(cats);
+
+创建cats.js
+var cats = ['a','b','c'];
+modules.exports = cats;
+
+在happymmall目录下执行：webpack ./src/page/index/index.js ./dist/app.js
+
+
+或者
+在happymmall下创建webpack.config.js
+module.exports = {
+    entry:'./src/page/index/index.js',
+    output:{
+        path:__dirname+'/dist',
+        filename:'app.js'
+    }
+};
+
+在happymmall目录下执行：webpack
+
+5、webpack处理多个入口
+module.exports = {
+    entry:{
+        'index':['./src/page/index/index.js'],
+        'login':['./src/page/login/index.js']
+    },
+    output:{
+        path:__dirname+'/dist',
+        filename:'js/[name]-[hash].js',
+    }
+};
+
+6、npm安装jquery：sudo npm install jquery --save
+
+7、安装webpack-cli：npm install webpack-cli --save-dev
+
+8、webpack处理css
+sudo npm install style-loader --save-dev
+sudo npm install css-loader --save-dev
+sudo npm install extract-text-webpack-plugin@next --save-dev
+
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: "css-loader"
+            })
+        }
+    ]
+},
+
+9、webpack处理html
+sudo npm install html-loader --save-dev
+sudo npm install html-webpack-plugin --save-dev
+
+webpack.config.js
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var getHtmlConfig = function(name, title){
+    return {
+        template    : './src/view/' + name + '.html',
+        filename    : 'view/' + name + '.html',
+        favicon     : './favicon.ico',
+        title       : title,
+        inject      : true,
+        hash        : true,
+        chunks      : ['common', name]
+    };
+};
+new HtmlWebpackPlugin(getHtmlConfig('index', '首页')),
+
+index.html
+<%= require('html-loader!./layout/html-head.html') %>
+
+html-head.html
+<head>
+    <meta charset="UTF-8">
+</head>
+
+10、webpack处理图片和字体
+sudo npm install file-loader --save-dev
+
+{
+    test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,
+    use: [
+        {
+            loader: 'file-loader',
+            options: {
+                name: 'resource/[name].[ext]',
+            }
+        }
+    ]
+},
+
+11、安装webpack-dev-server
+sudo npm install webpack-dev-server@2.9.7 -g
+sudo npm install webpack-dev-server@2.9.7 --save-dev
+
+
+
+
+
+
+
+
+
+
+
+
