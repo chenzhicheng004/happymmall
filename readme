@@ -119,7 +119,10 @@ url：localhost:8080/dist/view/index.html
 需要使用插件(不用安装)：
 new webpack.HotModuleReplacementPlugin()
 
+12、编写util/mm.js
 
+13、安装hogan
+npm install hogan --save
 
 
 
