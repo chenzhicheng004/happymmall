@@ -9,7 +9,7 @@ var _mm = {
         var _this = this;
         $.ajax({
             type        : param.method  || 'get',
-            url         : param.url     || '',
+            url         : "http://localhost:8090"+param.url     || '',
             dataType    : param.type    || 'json',
             data        : param.data    || '',
             success     : function(res){
