@@ -31,4 +31,12 @@ public class HappyMmallController {
         return result;
     }
 
+    @RequestMapping("user/login.do")
+    public Map login(String username, String password) {
+        System.out.println(username + "===" + password);
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", 0);
+        return result;
+    }
+
 }

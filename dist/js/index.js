@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d76c67a6a8393ca0e535"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "718f027662166128e876"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -722,7 +722,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(3)(__webpack_require__.s = 3);
+/******/ 	return hotCreateRequire(36)(__webpack_require__.s = 36);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -731,7 +731,7 @@
 
 "use strict";
 
-var Hogan = __webpack_require__(7);
+var Hogan = __webpack_require__(1);
 var conf = {
     serverHost : ''
 };
@@ -815,92 +815,7 @@ var _mm = {
 module.exports = _mm;
 
 /***/ }),
-/* 1 */,
-/* 2 */,
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(4);
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(5);
-__webpack_require__(12);
-
-var _mm             = __webpack_require__(0);
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-__webpack_require__(6);
-var _mm     = __webpack_require__(0);
-var _user   = __webpack_require__(10);
-var _cart   = __webpack_require__(11);
-// 导航
-var nav = {
-    init : function(){
-        this.bindEvent();
-        this.loadUserInfo();
-        this.loadCartCount();
-        return this;
-    },
-    bindEvent : function(){
-        // 登录点击事件
-        $('.js-login').click(function(){
-            _mm.doLogin();
-        });
-        // 注册点击事件
-        $('.js-register').click(function(){
-            window.location.href = './user-register.html';
-        });
-        // 退出点击事件
-        $('.js-logout').click(function(){
-            _user.logout(function(res){
-                window.location.reload();
-            }, function(errMsg){
-                _mm.errorTips(errMsg);
-            });
-        });
-    },
-    // 加载用户信息
-    loadUserInfo : function(){
-        _user.checkLogin(function(res){
-            $('.user.not-login').hide().siblings('.user.login').show()
-                .find('.username').text(res.username);
-        }, function(errMsg){
-            // do nothing
-        });
-    },
-    // 加载购物车数量
-    loadCartCount : function(){
-        _cart.getCartCount(function(res){
-            $('.nav .cart-count').text(res || 0);
-        }, function(errMsg){
-            $('.nav .cart-count').text(0);
-        });
-    }
-};
-
-module.exports = nav.init();
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 7 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -920,14 +835,14 @@ module.exports = nav.init();
 
 // This file is for use with Node.js. See dist/ for browser files.
 
-var Hogan = __webpack_require__(8);
-Hogan.Template = __webpack_require__(9).Template;
+var Hogan = __webpack_require__(2);
+Hogan.Template = __webpack_require__(3).Template;
 Hogan.template = Hogan.Template;
 module.exports = Hogan;
 
 
 /***/ }),
-/* 8 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1356,7 +1271,7 @@ module.exports = Hogan;
 
 
 /***/ }),
-/* 9 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1703,7 +1618,7 @@ var Hogan = {};
 
 
 /***/ }),
-/* 10 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1829,7 +1744,125 @@ var _user = {
 module.exports = _user;
 
 /***/ }),
-/* 11 */
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(37);
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(38);
+__webpack_require__(41);
+
+var navSide         = __webpack_require__(43);
+var _mm             = __webpack_require__(0);
+
+navSide.init({
+    name : "user-center"
+});
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+__webpack_require__(39);
+var _mm     = __webpack_require__(0);
+var _user   = __webpack_require__(4);
+var _cart   = __webpack_require__(40);
+// 导航
+var nav = {
+    init : function(){
+        this.bindEvent();
+        this.loadUserInfo();
+        this.loadCartCount();
+        return this;
+    },
+    bindEvent : function(){
+        // 登录点击事件
+        $('.js-login').click(function(){
+            _mm.doLogin();
+        });
+        // 注册点击事件
+        $('.js-register').click(function(){
+            window.location.href = './user-register.html';
+        });
+        // 退出点击事件
+        $('.js-logout').click(function(){
+            _user.logout(function(res){
+                window.location.reload();
+            }, function(errMsg){
+                _mm.errorTips(errMsg);
+            });
+        });
+    },
+    // 加载用户信息
+    loadUserInfo : function(){
+        _user.checkLogin(function(res){
+            $('.user.not-login').hide().siblings('.user.login').show()
+                .find('.username').text(res.username);
+        }, function(errMsg){
+            // do nothing
+        });
+    },
+    // 加载购物车数量
+    loadCartCount : function(){
+        _cart.getCartCount(function(res){
+            $('.nav .cart-count').text(res || 0);
+        }, function(errMsg){
+            $('.nav .cart-count').text(0);
+        });
+    }
+};
+
+module.exports = nav.init();
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1926,12 +1959,12 @@ var _cart = {
 module.exports = _cart;
 
 /***/ }),
-/* 12 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-__webpack_require__(13);
+__webpack_require__(42);
 var _mm     = __webpack_require__(0);
 // 通用页面头部
 var header = {
@@ -1977,10 +2010,66 @@ var header = {
 header.init();
 
 /***/ }),
-/* 13 */
+/* 42 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+__webpack_require__(44);
+var _mm             = __webpack_require__(0);
+var templateIndex   = __webpack_require__(45);
+// 侧边导航
+var navSide = {
+    option : {
+        name : '',
+        navList : [
+            {name : 'user-center', desc : '个人中心', href: './user-center.html'},
+            {name : 'order-list', desc : '我的订单', href: './order-list.html'},
+            {name : 'user-pass-update', desc : '修改密码', href: './user-pass-update.html'},
+            {name : 'about', desc : '关于MMall', href: './about.html'}
+        ]
+    },
+    init : function(option){
+        // 合并选项
+        $.extend(this.option, option);
+        this.renderNav();
+    },
+    // 渲染导航菜单
+    renderNav : function(){
+        // 计算active数据
+        for(var i = 0, iLength = this.option.navList.length; i < iLength; i++){
+            if(this.option.navList[i].name === this.option.name){
+                this.option.navList[i].isActive = true;
+            }
+        };
+        // 渲染list数据
+        var navHtml = _mm.renderHtml(templateIndex, {
+            navList : this.option.navList
+        });
+        // 把html放入容器
+        $('.nav-side').html(navHtml);
+    }
+};
+
+module.exports = navSide;
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+module.exports = "{{#navList}} {{#isActive}} <li class=\"nav-item active\"> {{/isActive}} {{^isActive}} </li><li class=\"nav-item\"> {{/isActive}} <a class=\"link\" href=\"{{href}}\">{{desc}}</a> </li> {{/navList}}";
 
 /***/ })
 /******/ ]);
