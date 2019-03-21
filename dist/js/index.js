@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "718f027662166128e876"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d591be804f14ace5501c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -241,7 +241,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = 1;
+/******/ 			var chunkId = 4;
 /******/ 			{ // eslint-disable-line no-lone-blocks
 /******/ 				/*globals chunkId */
 /******/ 				hotEnsureUpdateChunk(chunkId);
@@ -722,7 +722,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(36)(__webpack_require__.s = 36);
+/******/ 	return hotCreateRequire(44)(__webpack_require__.s = 44);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -731,7 +731,7 @@
 
 "use strict";
 
-var Hogan = __webpack_require__(1);
+var Hogan = __webpack_require__(2);
 var conf = {
     serverHost : ''
 };
@@ -818,6 +818,132 @@ module.exports = _mm;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+
+var _mm = __webpack_require__(0);
+
+var _user = {
+    // 用户登录
+    login : function(userInfo, resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/login.do'),
+            data    : userInfo,
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 检查用户名
+    checkUsername : function(username, resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/check_valid.do'),
+            data    : {
+                type    : 'username',
+                str     : username
+            },
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 用户注册
+    register : function(userInfo, resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/register.do'),
+            data    : userInfo,
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 检查登录状态
+    checkLogin : function(resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/get_user_info.do'),
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 获取用户密码提示问题
+    getQuestion : function(username, resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/forget_get_question.do'),
+            data    : {
+                username : username
+            },
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 检查密码提示问题答案
+    checkAnswer : function(userInfo, resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/forget_check_answer.do'),
+            data    : userInfo,
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 重置密码
+    resetPassword : function(userInfo, resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/forget_reset_password.do'),
+            data    : userInfo,
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 获取用户信息
+    getUserInfo : function(resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/get_information.do'),
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 更新个人信息
+    updateUserInfo : function(userInfo, resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/update_information.do'),
+            data    : userInfo,
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 登录状态下更新密码
+    updatePassword : function(userInfo, resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/reset_password.do'),
+            data    : userInfo,
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    },
+    // 登出
+    logout : function(resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/user/logout.do'),
+            method  : 'POST',
+            success : resolve,
+            error   : reject
+        });
+    }
+};
+module.exports = _user;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /*
  *  Copyright 2011 Twitter, Inc.
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -835,14 +961,14 @@ module.exports = _mm;
 
 // This file is for use with Node.js. See dist/ for browser files.
 
-var Hogan = __webpack_require__(2);
-Hogan.Template = __webpack_require__(3).Template;
+var Hogan = __webpack_require__(3);
+Hogan.Template = __webpack_require__(4).Template;
 Hogan.template = Hogan.Template;
 module.exports = Hogan;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1271,7 +1397,7 @@ module.exports = Hogan;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1618,196 +1744,15 @@ var Hogan = {};
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-
-var _mm = __webpack_require__(0);
-
-var _user = {
-    // 用户登录
-    login : function(userInfo, resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/login.do'),
-            data    : userInfo,
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 检查用户名
-    checkUsername : function(username, resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/check_valid.do'),
-            data    : {
-                type    : 'username',
-                str     : username
-            },
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 用户注册
-    register : function(userInfo, resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/register.do'),
-            data    : userInfo,
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 检查登录状态
-    checkLogin : function(resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/get_user_info.do'),
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 获取用户密码提示问题
-    getQuestion : function(username, resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/forget_get_question.do'),
-            data    : {
-                username : username
-            },
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 检查密码提示问题答案
-    checkAnswer : function(userInfo, resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/forget_check_answer.do'),
-            data    : userInfo,
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 重置密码
-    resetPassword : function(userInfo, resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/forget_reset_password.do'),
-            data    : userInfo,
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 获取用户信息
-    getUserInfo : function(resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/get_information.do'),
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 更新个人信息
-    updateUserInfo : function(userInfo, resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/update_information.do'),
-            data    : userInfo,
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 登录状态下更新密码
-    updatePassword : function(userInfo, resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/reset_password.do'),
-            data    : userInfo,
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    },
-    // 登出
-    logout : function(resolve, reject){
-        _mm.request({
-            url     : _mm.getServerUrl('/user/logout.do'),
-            method  : 'POST',
-            success : resolve,
-            error   : reject
-        });
-    }
-};
-module.exports = _user;
-
-/***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(37);
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(38);
-__webpack_require__(41);
-
-var navSide         = __webpack_require__(43);
-var _mm             = __webpack_require__(0);
-
-navSide.init({
-    name : "user-center"
-});
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-__webpack_require__(39);
+__webpack_require__(6);
 var _mm     = __webpack_require__(0);
-var _user   = __webpack_require__(4);
-var _cart   = __webpack_require__(40);
+var _user   = __webpack_require__(1);
+var _cart   = __webpack_require__(7);
 // 导航
 var nav = {
     init : function(){
@@ -1856,13 +1801,13 @@ var nav = {
 module.exports = nav.init();
 
 /***/ }),
-/* 39 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 40 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1959,12 +1904,12 @@ var _cart = {
 module.exports = _cart;
 
 /***/ }),
-/* 41 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-__webpack_require__(42);
+__webpack_require__(9);
 var _mm     = __webpack_require__(0);
 // 通用页面头部
 var header = {
@@ -2010,20 +1955,20 @@ var header = {
 header.init();
 
 /***/ }),
-/* 42 */
+/* 9 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 43 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-__webpack_require__(44);
+__webpack_require__(11);
 var _mm             = __webpack_require__(0);
-var templateIndex   = __webpack_require__(45);
+var templateIndex   = __webpack_require__(12);
 // 侧边导航
 var navSide = {
     option : {
@@ -2060,16 +2005,71 @@ var navSide = {
 module.exports = navSide;
 
 /***/ }),
-/* 44 */
+/* 11 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 45 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = "{{#navList}} {{#isActive}} <li class=\"nav-item active\"> {{/isActive}} {{^isActive}} </li><li class=\"nav-item\"> {{/isActive}} <a class=\"link\" href=\"{{href}}\">{{desc}}</a> </li> {{/navList}}";
+
+/***/ }),
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(45);
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(5);
+__webpack_require__(8);
+
+var navSide         = __webpack_require__(10);
+var _mm             = __webpack_require__(0);
+
+navSide.init({
+    name : "user-center"
+});
 
 /***/ })
 /******/ ]);
