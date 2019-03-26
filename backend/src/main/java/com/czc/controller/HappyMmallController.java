@@ -1,12 +1,15 @@
 package com.czc.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.czc.vo.ProductVo;
 import com.czc.vo.UserRegisterVo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -114,6 +117,30 @@ public class HappyMmallController {
     public Map resetPassword() {
         Map<String, Object> result = new HashMap<>();
         result.put("status", 0);
+        return result;
+    }
+
+    @RequestMapping("product/list.do")
+    public Map productList() {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        List<ProductVo> list = new ArrayList<>();
+        ProductVo vo = new ProductVo();
+        list.add(new ProductVo(1L, "http://springforall.ufile.ucloud.com.cn", "/static/img/2d33b00f9596e606b113e7f5ce57e3b71511619", "aaa", "22"));
+        list.add(new ProductVo(2L, "http://springforall.ufile.ucloud.com.cn", "/static/img/2d33b00f9596e606b113e7f5ce57e3b71511619", "aaa", "22"));
+        list.add(new ProductVo(3L, "http://springforall.ufile.ucloud.com.cn", "/static/img/2d33b00f9596e606b113e7f5ce57e3b71511619", "aaa", "22"));
+        list.add(new ProductVo(4L, "http://springforall.ufile.ucloud.com.cn", "/static/img/2d33b00f9596e606b113e7f5ce57e3b71511619", "aaa", "22"));
+        list.add(new ProductVo(5L, "http://springforall.ufile.ucloud.com.cn", "/static/img/2d33b00f9596e606b113e7f5ce57e3b71511619", "aaa", "22"));
+        list.add(new ProductVo(6L, "http://springforall.ufile.ucloud.com.cn", "/static/img/2d33b00f9596e606b113e7f5ce57e3b71511619", "aaa", "22"));
+        data.put("list", list);
+        data.put("hasPreviousPage", true);
+        data.put("prePage", 1);
+        data.put("hasNextPage", true);
+        data.put("nextPage", 3);
+        data.put("pages", 8);
+
+        result.put("status", 0);
+        result.put("data", data);
         return result;
     }
 }

@@ -19,7 +19,7 @@ var configs = {
     entry: {
         'common'            : ['./src/page/common/index.js'],
         'index'             : ['./src/page/index/index.js'],
-        // 'list'              : ['./src/page/list/index.js'],
+        'list'              : ['./src/page/list/index.js'],
         // 'detail'            : ['./src/page/detail/index.js'],
         // 'cart'              : ['./src/page/cart/index.js'],
         // 'order-confirm'     : ['./src/page/order-confirm/index.js'],
@@ -90,7 +90,7 @@ var configs = {
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin("css/[name].css"),
         new HtmlWebpackPlugin(getHtmlConfig('index', '首页')),
-        // new HtmlWebpackPlugin(getHtmlConfig('list', '商品列表')),
+        new HtmlWebpackPlugin(getHtmlConfig('list', '商品列表')),
         // new HtmlWebpackPlugin(getHtmlConfig('detail', '商品详情')),
         // new HtmlWebpackPlugin(getHtmlConfig('cart', '购物车')),
         // new HtmlWebpackPlugin(getHtmlConfig('order-confirm', '订单确认')),
