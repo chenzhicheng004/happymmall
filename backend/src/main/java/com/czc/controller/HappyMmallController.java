@@ -1,6 +1,7 @@
 package com.czc.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.czc.vo.CartVo;
 import com.czc.vo.ProductVo;
 import com.czc.vo.UserRegisterVo;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -142,5 +143,82 @@ public class HappyMmallController {
         result.put("status", 0);
         result.put("data", data);
         return result;
+    }
+
+    @RequestMapping("product/detail.do")
+    public Map detail(Long productId) {
+        System.out.println(productId);
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        data.put("subImages","a,b,c");
+        data.put("imageHost","aa");
+        data.put("mainImage","aa");
+        data.put("name","aa");
+        data.put("subtitle","bb");
+        data.put("stock","22");
+        data.put("price","￥22");
+        data.put("detail","<span>aaabbb</span>");
+        result.put("status", 0);
+        result.put("data", data);
+        return result;
+    }
+
+    @RequestMapping("cart/add.do")
+    public Map add(Long productId,Integer count) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", 0);
+        return result;
+    }
+
+    @RequestMapping("cart/list.do")
+    public Map list() {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        data.put("allChecked", true);
+        List<CartVo> list = new ArrayList<>();
+        CartVo vo = new CartVo();
+        vo.setProductId(1L);
+        vo.setImageHost("");
+        vo.setProductMainImage("");
+        vo.setProductName("aaa");
+        vo.setProductPrice("333");
+        vo.setProductStock(323);
+        vo.setQuantity(1);
+        vo.setProductTotalPrice("555");
+        vo.setProductChecked(true);
+        list.add(vo);
+
+        CartVo vo1 = new CartVo();
+        vo1.setProductId(2L);
+        vo1.setImageHost("");
+        vo1.setProductMainImage("");
+        vo1.setProductName("aaa");
+        vo1.setProductPrice("333");
+        vo1.setProductStock(323);
+        vo1.setQuantity(2);
+        vo1.setProductTotalPrice("555");
+        vo1.setProductChecked(true);
+        list.add(vo1);
+        data.put("cartProductVoList", list);
+        data.put("cartTotalPrice", "666");
+
+        result.put("status", 0);
+        result.put("data", data);
+        return result;
+    }
+
+    @RequestMapping("cart/update.do")
+    public Map update() {
+        return list();
+    }
+
+    @RequestMapping("cart/select.do")
+    public Map select() {
+        return list();
+    }
+
+    @RequestMapping("cart/delete_product.do")
+    public Map deleteProduct() {
+        return list();
     }
 }
