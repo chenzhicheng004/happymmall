@@ -1,9 +1,7 @@
 package com.czc.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.czc.vo.CartVo;
-import com.czc.vo.ProductVo;
-import com.czc.vo.UserRegisterVo;
+import com.czc.vo.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -220,5 +218,185 @@ public class HappyMmallController {
     @RequestMapping("cart/delete_product.do")
     public Map deleteProduct() {
         return list();
+    }
+
+    @RequestMapping("shipping/list.do")
+    public Map shippingList() {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        List<AddressVo> list = new ArrayList<>();
+        AddressVo vo = new AddressVo();
+        vo.setId(1L);
+        vo.setIsActive(false);
+        vo.setReceiverCity("杭州");
+        vo.setReceiverProvince("浙江");
+        vo.setReceiverAddress("滨江江南大道588");
+        vo.setReceiverName("陈志成");
+        vo.setReceiverPhone("13511115555");
+        list.add(vo);
+
+        AddressVo vo1 = new AddressVo();
+        vo1.setId(2L);
+        vo1.setIsActive(true);
+        vo1.setReceiverCity("杭州");
+        vo1.setReceiverProvince("浙江");
+        vo1.setReceiverAddress("滨江江南大道588");
+        vo1.setReceiverName("陈志成");
+        vo1.setReceiverPhone("13511115555");
+        list.add(vo1);
+        data.put("list", list);
+        result.put("status", 0);
+        result.put("data", data);
+
+        return result;
+    }
+
+    @RequestMapping("order/get_order_cart_product.do")
+    public Map getOrderCartProduct() {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        List<OrderItemVo> orderItemVoList = new ArrayList();
+        OrderItemVo vo = new OrderItemVo();
+        vo.setProductId(1L);
+        vo.setImageHost("");
+        vo.setProductImage("");
+        vo.setProductName("iphone手机");
+        vo.setQuantity("2");
+        vo.setTotalPrice("222");
+        vo.setCurrentUnitPrice("111");
+        orderItemVoList.add(vo);
+
+        OrderItemVo vo1 = new OrderItemVo();
+        vo1.setProductId(2L);
+        vo1.setImageHost("");
+        vo1.setProductImage("");
+        vo1.setProductName("iphone手机222");
+        vo1.setQuantity("3");
+        vo1.setTotalPrice("333");
+        vo1.setCurrentUnitPrice("111");
+        orderItemVoList.add(vo1);
+        data.put("orderItemVoList", orderItemVoList);
+        data.put("productTotalPrice", "33223");
+        result.put("status", 0);
+        result.put("data", data);
+
+        return result;
+    }
+
+    @RequestMapping("shipping/select.do")
+    public Map shippingSelect(Long shippingId) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", 0);
+
+        AddressVo vo = new AddressVo();
+        vo.setId(1L);
+        vo.setIsActive(false);
+        vo.setReceiverCity("杭州");
+        vo.setReceiverProvince("浙江省");
+        vo.setReceiverAddress("滨江江南大道588");
+        vo.setReceiverName("陈志成");
+        vo.setReceiverPhone("13511115555");
+        vo.setIsUpdate(true);
+        result.put("data", vo);
+        return result;
+    }
+
+    @RequestMapping("order/list.do")
+    public Map orderList() {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+
+        List<OrderItemVo> orderItemVoList = new ArrayList();
+        OrderItemVo vo = new OrderItemVo();
+        vo.setProductId(1L);
+        vo.setImageHost("");
+        vo.setProductImage("");
+        vo.setProductName("iphone手机");
+        vo.setQuantity("2");
+        vo.setTotalPrice("222");
+        vo.setCurrentUnitPrice("111");
+        orderItemVoList.add(vo);
+
+        OrderItemVo vo1 = new OrderItemVo();
+        vo1.setProductId(2L);
+        vo1.setImageHost("");
+        vo1.setProductImage("");
+        vo1.setProductName("iphone手机222");
+        vo1.setQuantity("3");
+        vo1.setTotalPrice("333");
+        vo1.setCurrentUnitPrice("111");
+        orderItemVoList.add(vo1);
+
+        List<OrderVo> orderList = new ArrayList();
+        OrderVo orderVo = new OrderVo();
+        orderVo.setOrderItemVoList(orderItemVoList);
+        orderVo.setCreateTime("2015-01-01");
+        orderVo.setOrderNo("23232222");
+        orderVo.setStatusDesc("已支付");
+        orderVo.setPayment("555");
+        orderList.add(orderVo);
+
+        data.put("list", orderList);
+        result.put("data", data);
+        result.put("status", 0);
+
+        data.put("hasPreviousPage", true);
+        data.put("prePage", 1);
+        data.put("hasNextPage", true);
+        data.put("nextPage", 3);
+        data.put("pages", 8);
+
+        return result;
+    }
+
+    @RequestMapping("order/detail.do")
+    public Map orderDetail(Long orderNo) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", 0);
+
+        OrderDetailVo orderDetailVo = new OrderDetailVo();
+
+        List<OrderItemVo> orderItemVoList = new ArrayList();
+        OrderItemVo vo = new OrderItemVo();
+        vo.setProductId(1L);
+        vo.setImageHost("");
+        vo.setProductImage("");
+        vo.setProductName("iphone手机");
+        vo.setQuantity("2");
+        vo.setTotalPrice("222");
+        vo.setCurrentUnitPrice("111");
+        orderItemVoList.add(vo);
+
+        OrderItemVo vo1 = new OrderItemVo();
+        vo1.setProductId(2L);
+        vo1.setImageHost("");
+        vo1.setProductImage("");
+        vo1.setProductName("iphone手机222");
+        vo1.setQuantity("3");
+        vo1.setTotalPrice("333");
+        vo1.setCurrentUnitPrice("111");
+        orderItemVoList.add(vo1);
+        orderDetailVo.setOrderItemVoList(orderItemVoList);
+        orderDetailVo.setCreateTime("2015-01-01");
+        orderDetailVo.setIsCancelable(false);
+        orderDetailVo.setNeedPay(false);
+        orderDetailVo.setOrderNo("11");
+        orderDetailVo.setPaymentTypeDesc("支付宝");
+        orderDetailVo.setStatusDesc("已完成");
+        orderDetailVo.setReceiverName("陈志成");
+
+        AddressVo addressVo = new AddressVo();
+        addressVo.setId(1L);
+        addressVo.setIsActive(false);
+        addressVo.setReceiverCity("杭州");
+        addressVo.setReceiverProvince("浙江省");
+        addressVo.setReceiverAddress("滨江江南大道588");
+        addressVo.setReceiverName("陈志成");
+        addressVo.setReceiverMobile("13511115555");
+        addressVo.setIsUpdate(true);
+        orderDetailVo.setShippingVo(addressVo);
+        orderDetailVo.setPayment("232333");
+        result.put("data", orderDetailVo);
+        return result;
     }
 }
